@@ -2,7 +2,7 @@
 <html>
  
 <head>
-  <title>Simple Example</title>
+  <title>Simple ?</title>
   <style>
     canvas {
       border: #333 10px solid;
@@ -11,23 +11,19 @@
 </head>
  
 <body>
-  <canvas id="myCanvas" width="550px" height="350px"></canvas>
+  <canvas id="myCanvas" width="550px" height="500px"></canvas>
  
   <script>
     var canvas = document.querySelector("#myCanvas");
     var context = canvas.getContext("2d");
 
-    context.moveTo(160, 130);
-    context.lineTo(75, 200);
-    context.lineTo(150, 275);
-    context.lineTo(250, 230);
+    context.moveTo(50, 130);
+    context.quadraticCurveTo(300, 450, 499, 300);
     context.closePath();
 
     context.lineWidth = 10;
-    context.strokeStyle = "gray";
-    context.fillStyle = "yellow";
+    context.strokeStyle = "#FFCC00";
 
-    context.fill();
     context.stroke();
   </script>
  
