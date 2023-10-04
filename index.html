@@ -1,36 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+ 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Example</title>
-    <style>
-        /* This is to visually see the edges of the canvas on the DOM */
-        canvas {
-            border: 10px solid #333;
-        }
-    </style>
+  <title>Simple Example</title>
+  <style>
+    canvas {
+      border: #333 10px solid;
+    }
+  </style>
 </head>
+ 
 <body>
-    <!-- set inline height and width on canvas since CSS can't do it -->
-    <canvas id="myCanvas" width="500" height="500"></canvas>
-    <script>
-        let canvas = document.querySelector("#myCanvas");
-        let context = canvas.getContext("2d");
+  <canvas id="myCanvas" width="550px" height="350px"></canvas>
+ 
+  <script>
+    var canvas = document.querySelector("#myCanvas");
+    var context = canvas.getContext("2d");
 
-        // draw a diagonal line
-        context.moveTo(50, 50);
-        context.lineTo(450, 300);
+    context.moveTo(160, 130);
+    context.lineTo(75, 200);
+    context.lineTo(150, 275);
+    context.lineTo(250, 230);
+    context.closePath();
+
+    context.lineWidth = 10;
+    context.strokeStyle = "gray";
+    context.fillStyle = "yellow";
+
+    context.fill();
+    context.stroke();
+  </script>
  
-        // close the path
-        context.closePath();
- 
-        // specify what our line looks like
-        context.lineWidth = 45;
-        context.strokeStyle = "steelblue";
- 
-        // get the line drawn to the canvas
-        context.stroke();
-    </script>
 </body>
+ 
 </html>
