@@ -14,5 +14,23 @@
 <body>
     <!-- set inline height and width on canvas since CSS can't do it -->
     <canvas id="myCanvas" width="500" height="500"></canvas>
+    <script>
+        let canvas = document.querySelector("#myCanvas");
+        let context = canvas.getContext("2d");
+
+        // draw a diagonal line
+        context.moveTo(50, 50);
+        context.lineTo(450, 300);
+ 
+        // close the path
+        context.closePath();
+ 
+        // specify what our line looks like
+        context.lineWidth = 45;
+        context.strokeStyle = "steelblue";
+ 
+        // get the line drawn to the canvas
+        context.stroke();
+    </script>
 </body>
 </html>
