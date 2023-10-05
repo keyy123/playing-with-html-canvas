@@ -17,12 +17,27 @@
     var canvas = document.querySelector("#myCanvas");
     var context = canvas.getContext("2d");
 
-    context.moveTo(50, 130);
-    context.quadraticCurveTo(300, 450, 499, 300);
+    context.beginPath();
+    context.moveTo(160, 130);
+    context.lineTo(75, 200);
+    context.lineTo(150, 275);
+    context.lineTo(250, 230);
     context.closePath();
 
     context.lineWidth = 10;
     context.strokeStyle = "#FFCC00";
+    context.fillStyle = "#FFDE58";
+
+    context.stroke();
+    context.fill();
+
+    context.beginPath();
+    context.moveTo(50, 50);
+    context.lineTo(450, 300);   
+    context.closePath();
+
+    context.lineWidth = 45;
+    context.strokeStyle = "steelblue";
 
     context.stroke();
   </script>
