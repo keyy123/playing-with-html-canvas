@@ -23,14 +23,15 @@
         }
 
         function draw(){
-            context.beginPath();
-            context.arc(200, 200, 93, 0, 2 * Math.PI, true);
-            context.fillStyle = "#E2FFC6";
-            context.fill();
+           context.fillStyle = "green";
+           context.fillRect(100, 100, 100, 100);
+           context.strokeStyle = "red";
+           context.lineWidth = 5;
+           context.lineJoin = "round";
+           context.strokeRect(100, 100, 100, 100);
+           
 
-            context.lineWidth = 20;
-            context.strokeStyle = '#66CC01';
-            context.stroke();
+           
         }
         draw();
         // context.beginPath()
