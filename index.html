@@ -17,20 +17,42 @@
         let canvas = document.getElementById("myCanvas");
         let context = canvas.getContext("2d");
 
-        context.beginPath();
-        context.moveTo(100,100);
-        context.lineTo(400, 400);
-        context.lineTo(100, 400);
-        context.closePath();
+        let dimensions = {
+            width: canvas.width,
+            height: canvas.height
+        }
 
+        function draw(){
+            context.beginPath();
+            context.arc(200, 200, 93, 0, 2 * Math.PI, true);
+            context.fillStyle = "#E2FFC6";
+            context.fill();
 
-        context.fillStyle = "blue";
-        context.fill();
+            context.lineWidth = 20;
+            context.strokeStyle = '#66CC01';
+            context.stroke();
+        }
+        draw();
+        // context.beginPath()
+        // context.arc(200, 200, 93, Math.PI/2, Math.PI, true);
+        // context.closePath();
 
-        context.lineWidth = 10;
-        context.strokeStyle = "gray";
-        context.stroke();
+        // context.lineWidth = 5;
+        // context.strokeStyle = "red";
+        // context.stroke();
 
+        // context.fillStyle = "green";
+        // context.fill();
+
+        // context.beginPath();
+        // context.arc(200, 200, 93, Math.PI/2, Math.PI, false);
+        // context.closePath();
+        // context.lineWidth = 5;
+        // context.strokeStyle = "green";
+        // context.stroke();
+
+        // context.fillStyle = "red";
+        // context.fill();
   </script>
  
 </body>
