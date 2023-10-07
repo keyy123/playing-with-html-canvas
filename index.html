@@ -2,7 +2,7 @@
 <html>
  
 <head>
-  <title>Simple ?</title>
+  <title>Rectangle Canvas Example</title>
   <style>
     canvas {
       border: #333 10px solid;
@@ -11,34 +11,23 @@
 </head>
  
 <body>
-  <canvas id="myCanvas" width="550px" height="500px"></canvas>
+  <canvas id="myCanvas" width="500px" height="500px"></canvas>
  
   <script>
     var canvas = document.querySelector("#myCanvas");
     var context = canvas.getContext("2d");
 
     context.beginPath();
-    context.moveTo(160, 130);
-    context.lineTo(75, 200);
-    context.lineTo(150, 275);
-    context.lineTo(250, 230);
+    context.rect(250, 250, 100, 50);
     context.closePath();
 
-    context.lineWidth = 10;
-    context.strokeStyle = "#FFCC00";
-    context.fillStyle = "#FFDE58";
-
-    context.stroke();
+    // fill  
+    context.fillStyle = "#51DCFF";
     context.fill();
 
-    context.beginPath();
-    context.moveTo(50, 50);
-    context.lineTo(450, 300);   
-    context.closePath();
-
-    context.lineWidth = 45;
-    context.strokeStyle = "steelblue";
-
+    //stroke 
+    context.lineWidth = 10;
+    context.strokStyle = "#666";
     context.stroke();
   </script>
  
