@@ -17,43 +17,35 @@
         let canvas = document.getElementById("myCanvas");
         let context = canvas.getContext("2d");
 
-        let dimensions = {
-            width: canvas.width,
-            height: canvas.height
-        }
+        context.beginPath();
+        context.rect(75, 100, 250, 150);
 
-        function draw(){
-           context.fillStyle = "green";
-           context.fillRect(100, 100, 100, 100);
-           context.strokeStyle = "red";
-           context.lineWidth = 5;
-           context.lineJoin = "round";
-           context.strokeRect(100, 100, 100, 100);
-           
+        // Linear Gradient
+        //let gradient = context.createLinearGradient(75, 0, 325, 0);
 
-           
-        }
-        draw();
-        // context.beginPath()
-        // context.arc(200, 200, 93, Math.PI/2, Math.PI, true);
-        // context.closePath();
+        // gradient.addColorStop(0.1, "#DDDDDD");
+        // gradient.addColorStop(0.75, "#2D7BEC");
+        // gradient.addColorStop(0.9, "#31FFFF");
 
-        // context.lineWidth = 5;
-        // context.strokeStyle = "red";
+        // context.fillStyle = gradient;
+        // context.fill()
+
+        // context.lineWidth = 3;
+        // context.strokeStyle = "#535353";
         // context.stroke();
 
-        // context.fillStyle = "green";
-        // context.fill();
+        // Radial Gradient 
+        let gradient = context.createRadialGradient(87.5, 175, 0, 87.5, 175, 100);
 
-        // context.beginPath();
-        // context.arc(200, 200, 93, Math.PI/2, Math.PI, false);
-        // context.closePath();
-        // context.lineWidth = 5;
-        // context.strokeStyle = "green";
-        // context.stroke();
+        gradient.addColorStop(0, "#FFCC00");
+        gradient.addColorStop(1, "#B4CB02");
 
-        // context.fillStyle = "red";
-        // context.fill();
+        context.fillStyle = gradient;
+        context.fill();
+
+        context.lineWidth = 5;
+        context.strokeStyle = "#535353";
+        context.stroke();
   </script>
  
 </body>
