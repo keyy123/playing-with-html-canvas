@@ -11,41 +11,18 @@
 </head>
  
 <body>
-  <canvas id="myCanvas" width="500px" height="500px"></canvas>
+  <canvas id="myCanvas" width="500px" height="350px"></canvas>
  
   <script>
         let canvas = document.getElementById("myCanvas");
         let context = canvas.getContext("2d");
 
-        context.beginPath();
-        context.rect(75, 100, 250, 150);
-
-        // Linear Gradient
-        //let gradient = context.createLinearGradient(75, 0, 325, 0);
-
-        // gradient.addColorStop(0.1, "#DDDDDD");
-        // gradient.addColorStop(0.75, "#2D7BEC");
-        // gradient.addColorStop(0.9, "#31FFFF");
-
-        // context.fillStyle = gradient;
-        // context.fill()
-
-        // context.lineWidth = 3;
-        // context.strokeStyle = "#535353";
-        // context.stroke();
-
-        // Radial Gradient 
-        let gradient = context.createRadialGradient(87.5, 175, 0, 87.5, 175, 100);
-
-        gradient.addColorStop(0, "#FFCC00");
-        gradient.addColorStop(1, "#B4CB02");
-
-        context.fillStyle = gradient;
-        context.fill();
-
-        context.lineWidth = 5;
-        context.strokeStyle = "#535353";
-        context.stroke();
+        context.font = "bold 100px Arial"
+        context.direction = "ltr";
+        context.fillStyle = "steelblue";
+        context.fillText("tasty food", 40, 125);
+        context.strokeText("tasty food", 40, 200);
+        
   </script>
  
 </body>
