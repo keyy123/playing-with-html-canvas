@@ -16,32 +16,63 @@
   <script>
         let canvas = document.getElementById("myCanvas");
         let context = canvas.getContext("2d");
+        // functions
+        // for(let i = 0; i < 45; i++){
+        //     drawSquare()
+        // }
 
-        // translate transform
-        // context.translate(200, 100);
- 
-        // Circle
-        // context.beginPath();
-        // context.arc(200, 200, 93, 0, 2 * Math.PI, true);
-        // context.fillStyle = "#FF6A6A";
-        // context.fill();
-  
-        // Square
-        // context.fillStyle = "#00CCFF";
-        // context.fillRect(50, 50, 100, 100);
+        // function drawSquare(){
+        //     let xPos = Math.round(Math.random() * canvas.width);
+        //     let yPos = Math.round(Math.random() * canvas.height);
+        //     let dimensions = Math.round(Math.random() * (canvas.width/2))
+        //     context.beginPath();
+        //     context.fillStyle = "rgba(41, 170, 255, .1)";
+        //     context.fillRect(xPos, yPos, dimensions, dimensions);
+        // }
 
-        // rotate transform
-        // context.rotate(45 * Math.PI/180);
-        // context.fillStyle = "steelblue";
-        // context.font = "bold 48px Helvetica, Arial, sans-serif";
-        // context.fillText("Yayy!", 150, 0);
+        // Objects
+        let circles = [];
+        let circle = {
+            idValue: -1,
+            radius: 0,
+            xPos: 0,
+            yPos: 0,
+            color: "rgba(41, 170, 255, .1)",
 
-        context.scale(-0.73, 1);
-        // context.fillStyle = "#FFCC00";
-        // context.fillRect(50, 50 , 100, 100)
-        context.font = "bold 96px Helvetica, Arial, sans-serif";
-        context.fillStyle = "#CC6699";
-        context.fillText("Confused", -700, 100);
+            setup: function (x, y) {
+                this.xPos = x;
+                this.yPos = y;
+                this.radius = Math.round(15 + Math.random() * 150);
+            },
+
+            setColor: function (newColor) {
+                this.color = newColor;
+            },
+            draw: function () {
+                context.beginPath();
+                context.arc(this.xPos, this.yPos, this.radius, 0, 2 * Math.PI, true);
+                context.fillStyle = this.color;
+                context.fill();
+            }
+        };
+
+        function drawAllCircles() {
+            for (let i = 0; i < 40; i++) {
+                let r = Math.round(15 + Math.random() * 150);
+                let xPos = Math.round(Math.random() * myCanvas.width);
+                let yPos = Math.round(Math.random() * myCanvas.height);
+
+                let newCircle = Object.create(circle);
+                newCircle.setup(xPos, yPos);
+                newCircle.idValue = i;
+                newCircle.draw();
+                circles.push(newCircle);
+            }
+        }
+        drawAllCircles();
+        let firstCircle = Object.create(circles[0]);
+        firstCircle.setColor("red");
+        firstCircle.draw();
   </script>
  
 </body>
