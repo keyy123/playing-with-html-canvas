@@ -17,31 +17,31 @@
         let canvas = document.getElementById("myCanvas");
         let context = canvas.getContext("2d");
 
-        // drawing images to canvas
-        // let myImage = new Image();
-        // myImage.src = "./images/orange.svg";
-        // myImage.addEventListener("load", loadImage, false);
+        // translate transform
+        // context.translate(200, 100);
+ 
+        // Circle
+        // context.beginPath();
+        // context.arc(200, 200, 93, 0, 2 * Math.PI, true);
+        // context.fillStyle = "#FF6A6A";
+        // context.fill();
+  
+        // Square
+        // context.fillStyle = "#00CCFF";
+        // context.fillRect(50, 50, 100, 100);
 
-        // function loadImage(e) {
-        //     context.drawImage(myImage, 0, 0);
-        // }
+        // rotate transform
+        // context.rotate(45 * Math.PI/180);
+        // context.fillStyle = "steelblue";
+        // context.font = "bold 48px Helvetica, Arial, sans-serif";
+        // context.fillText("Yayy!", 150, 0);
 
-        // scaling the image
-        // let myImage = new Image();
-        // myImage.src = "images/orange.svg";
-        // myImage.addEventListener("load", loadImage, false);
-        // function loadImage(e) {
-        //     context.drawImage(myImage, 0,0,100, 100);
-        // }
-         
-        // slicing an image
-        let myImage = new Image();
-        myImage.src = "images/orange.svg";
-        myImage.addEventListener("load", loadImage, false);
-        function loadImage(e) {
-            context.drawImage(myImage, 0,0,150,150,250,250,200,200);
-        }
-         
+        context.scale(-0.73, 1);
+        // context.fillStyle = "#FFCC00";
+        // context.fillRect(50, 50 , 100, 100)
+        context.font = "bold 96px Helvetica, Arial, sans-serif";
+        context.fillStyle = "#CC6699";
+        context.fillText("Confused", -700, 100);
   </script>
  
 </body>
