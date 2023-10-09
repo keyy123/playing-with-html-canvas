@@ -11,18 +11,37 @@
 </head>
  
 <body>
-  <canvas id="myCanvas" width="500px" height="350px"></canvas>
+  <canvas id="myCanvas" width="500px" height="500px"></canvas>
  
   <script>
         let canvas = document.getElementById("myCanvas");
         let context = canvas.getContext("2d");
 
-        context.font = "bold 100px Arial"
-        context.direction = "ltr";
-        context.fillStyle = "steelblue";
-        context.fillText("tasty food", 40, 125);
-        context.strokeText("tasty food", 40, 200);
-        
+        // drawing images to canvas
+        // let myImage = new Image();
+        // myImage.src = "./images/orange.svg";
+        // myImage.addEventListener("load", loadImage, false);
+
+        // function loadImage(e) {
+        //     context.drawImage(myImage, 0, 0);
+        // }
+
+        // scaling the image
+        // let myImage = new Image();
+        // myImage.src = "images/orange.svg";
+        // myImage.addEventListener("load", loadImage, false);
+        // function loadImage(e) {
+        //     context.drawImage(myImage, 0,0,100, 100);
+        // }
+         
+        // slicing an image
+        let myImage = new Image();
+        myImage.src = "images/orange.svg";
+        myImage.addEventListener("load", loadImage, false);
+        function loadImage(e) {
+            context.drawImage(myImage, 0,0,150,150,250,250,200,200);
+        }
+         
   </script>
  
 </body>
