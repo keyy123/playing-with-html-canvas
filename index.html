@@ -2,7 +2,7 @@
 <html>
  
 <head>
-  <title>Triangle Canvas Example</title>
+  <title>Animation Canvas Example</title>
   <style>
     canvas {
       border: #333 10px solid;
@@ -11,11 +11,49 @@
 </head>
  
 <body>
-  <canvas id="myCanvas" width="500px" height="500px"></canvas>
+  <div id="container">
+      <canvas id="myCanvas" width="500px" height="500px"></canvas>
+  </div>
  
   <script>
         let canvas = document.getElementById("myCanvas");
         let context = canvas.getContext("2d");
+
+        let canvasWidth = canvas.width;
+        let canvasHeight = canvas.height;
+
+        let yPos = -500;
+
+        function drawCircle() {
+            context.clearRect(0, 0, canvasWidth, canvasHeight);
+ 
+        // color in the background
+            context.fillStyle = "#F8F8F8";
+            context.fillRect(0, 0, canvasWidth, canvasHeight);
+ 
+        // draw the circle
+            context.beginPath();
+ 
+            let radius = 175;
+            context.arc(225, yPos, radius, 0, Math.PI * 2, false);
+            context.closePath();
+ 
+            context.fillStyle = "#FFCC00";
+            context.fill();
+ 
+            context.lineWidth = 10;
+            context.strokeStyle = "#DCB001";
+            context.stroke();
+
+            yPos += 5;
+
+            if(yPos > 800){
+                yPos = -500;
+            }
+
+            requestAnimationFrame(drawCircle)
+}
+            drawCircle();
   
   </script>
  
