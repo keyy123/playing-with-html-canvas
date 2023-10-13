@@ -17,74 +17,106 @@
  
   <script>
         let ctx = document.getElementById("myCanvas").getContext("2d");
-        let circles = []
-       
-        function Circle(radius, speed, width, xPos, yPos) {
-            this.radius = radius;
-            this.speed = speed;
-            this.width = width;
-            this.xPos = xPos;
-            this.yPos = yPos;
-            this.opacity = 0.05 + Math.random() * 0.5;
+        let canvas = document.getElementById("myCanvas")
+        let canvasPos = getPosition(canvas);
+        let mouseX = 0;
+        let mouseY = 0;
+        let positions = [];
+        let motionTrailLength = 10;
+        let xPos = -100;
+        let yPos = 250;
 
-            this.counter = 0;
 
-            let signHelper = Math.floor(Math.random() * 2);
+        canvas.addEventListener("mousemove", setMousePosition, false);
 
-            if (signHelper == 1){
-                this.sign = -1;
-            } else {
-                this.sign = 1
+        function setMousePosition(e) {
+            mouseX = e.clientX - canvasPos.x;
+            mouseY = e.clientY - canvasPos.y;
+        }
+         
+
+        function storeLastPosition(xPos, yPos) {
+            positions.push({
+                x: xPos,
+                y: yPos
+            });
+
+            if (positions.length > motionTrailLength) {
+                positions.shift();
             }
         }
 
-        Circle.prototype.update = function () {
-            this.counter += this.sign * this.speed;
+        function draw(){
+            ctx.clearRect(0, 0, 500, 500);
 
+            for(let i = 0; i < positions.length; i++) {
+                let ratio = i  / positions.length; 
+                drawCircle(positions[i].x, positions[i].y, ratio);
+            }
+
+            drawCircle(mouseX, mouseY, "source");
+            storeLastPosition(mouseX, mouseY);
+
+            requestAnimationFrame(draw);
+        }
+        draw()
+        
+        function drawCircle(x, y, r) {
+            let alpha;
+            let scale;
+
+            if(r == "source") {
+                alpha = 1;
+                scale = 1;
+            }else {
+                alpha  = r/2;
+                scale = r;
+            }
+            
             ctx.beginPath();
-
-            ctx.arc(
-                    this.xPos + Math.cos(this.counter / 100) * this.radius, 
-                    this.yPos + Math.sin(this.counter / 100) * this.radius, 
-                    this.width,
-                    0, 
-                    Math.PI * 2, 
-                    false
-                    );
-
-            ctx.closePath();
-
-            ctx.fillStyle = 'rgba(185, 211, 238,' + this.opacity + ')';
+            ctx.arc(x, y, 50, 0, 2 * Math.PI, true);
+            ctx.fillStyle = "rgba(204, 102, 153, " + alpha +")";
             ctx.fill();
         }
 
-        function setupCircles() {
-            for(let i = 0; i < 100; i++){
-                let randomX = Math.round(-200 + Math.random() * 700);
-                let randomY = Math.round(-200 + Math.random() * 700);
-                let speed = .2 + Math.random() * 3;
-                let size = 5 + Math.random() * 100;
-                let radius = 50 + Math.random() * 100;
+        window.addEventListener("scroll", updatePosition, false);
+        window.addEventListener("resize", updatePosition, false);
 
-                let circle = new Circle(radius, speed, size, randomX, randomY);
-                circles.push(circle);
-            }
-            drawAndUpdate();
+        function updatePosition () {
+            canvasPos = getPosition(canvas);
         }
-        setupCircles();
 
-        function drawAndUpdate() {
-            ctx.clearRect(0,0,500,500);
+        function getPosition(el) {
+            let xPosition = 0;
+            let yPosition = 0; 
 
-            for(let i = 0; i < circles.length; i++) {
-                let myCircle = circles[i];
-                myCircle.update();
+            let __ed_loopvar2 = Date.now();
+
+            while (el) {
+                if (Date.now() - __ed_loopvar2 > 3000) {
+                    document.body.innerHTML = "Infinite Loop Detected!";
+                    throw new Error("Infinite loop");
+                    break;
+                }
+
+                if (el.tagName == "BODY") {
+                    let xScrollPos = el.scrollLeft || document.documentElement.scrollLeft;
+                    let yScrollPos = el.scrollTop || document.documentElement.scrollTop;
+
+                    xPosition += (el.offsetLeft - xScrollPos + el.clientLeft);
+                    yPosition += (el.offsetTop - yScrollPos + el.clientTop);
+                } else {
+                    xPosition += (el.offsetLeft -  el.scrollLeft + el.clientLeft);
+                    yPosition += (el.offsetTop - el.scrollTop + el.clientTop);                    
+                }
+
+                el = el.offsetParent;
             }
-
-            requestAnimationFrame(drawAndUpdate)
+            return {
+                x: xPosition,
+                y: yPosition
+            };
         }
-        
-  
   </script>
  
 </body>
