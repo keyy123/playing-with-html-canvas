@@ -16,107 +16,40 @@
   </div>
  
   <script>
-        let ctx = document.getElementById("myCanvas").getContext("2d");
-        let canvas = document.getElementById("myCanvas")
-        let canvasPos = getPosition(canvas);
-        let mouseX = 0;
-        let mouseY = 0;
-        let positions = [];
-        let motionTrailLength = 10;
-        let xPos = -100;
-        let yPos = 250;
+        let canvas = document.getElementById("myCanvas");
+        let context = canvas.getContext("2d");
 
+        let myImage = new Image();
+        myImage.src = "https://www.kirupa.com/stuff/sprites_blue.png";
+        myImage.addEventListener("load", loadImage, false);
 
-        canvas.addEventListener("mousemove", setMousePosition, false);
-
-        function setMousePosition(e) {
-            mouseX = e.clientX - canvasPos.x;
-            mouseY = e.clientY - canvasPos.y;
-        }
-         
-
-        function storeLastPosition(xPos, yPos) {
-            positions.push({
-                x: xPos,
-                y: yPos
-            });
-
-            if (positions.length > motionTrailLength) {
-                positions.shift();
-            }
+        function loadImage(e) {
+            animate();
         }
 
-        function draw(){
-            ctx.clearRect(0, 0, 500, 500);
+        let shift = 0;
+        let frameWidth = 300;
+        let frameHeight = 300;
+        let totalFrames = 24;
+        let currentFrame = 0;
 
-            for(let i = 0; i < positions.length; i++) {
-                let ratio = i  / positions.length; 
-                drawCircle(positions[i].x, positions[i].y, ratio);
+        function animate() {
+            context.clearRect(120, 25, 300, 300);
+
+            context.drawImage(myImage, shift, 0, frameWidth, frameHeight, 120, 25, frameWidth, frameHeight);
+
+            shift += frameWidth + 1;
+
+            if (currentFrame == totalFrames) {
+                shift = 0;
+                currentFrame = 0;
             }
 
-            drawCircle(mouseX, mouseY, "source");
-            storeLastPosition(mouseX, mouseY);
+            currentFrame++;
 
-            requestAnimationFrame(draw);
+            requestAnimationFrame(animate);
         }
-        draw()
-        
-        function drawCircle(x, y, r) {
-            let alpha;
-            let scale;
-
-            if(r == "source") {
-                alpha = 1;
-                scale = 1;
-            }else {
-                alpha  = r/2;
-                scale = r;
-            }
-            
-            ctx.beginPath();
-            ctx.arc(x, y, 50, 0, 2 * Math.PI, true);
-            ctx.fillStyle = "rgba(204, 102, 153, " + alpha +")";
-            ctx.fill();
-        }
-
-        window.addEventListener("scroll", updatePosition, false);
-        window.addEventListener("resize", updatePosition, false);
-
-        function updatePosition () {
-            canvasPos = getPosition(canvas);
-        }
-
-        function getPosition(el) {
-            let xPosition = 0;
-            let yPosition = 0; 
-
-            let __ed_loopvar2 = Date.now();
-
-            while (el) {
-                if (Date.now() - __ed_loopvar2 > 3000) {
-                    document.body.innerHTML = "Infinite Loop Detected!";
-                    throw new Error("Infinite loop");
-                    break;
-                }
-
-                if (el.tagName == "BODY") {
-                    let xScrollPos = el.scrollLeft || document.documentElement.scrollLeft;
-                    let yScrollPos = el.scrollTop || document.documentElement.scrollTop;
-
-                    xPosition += (el.offsetLeft - xScrollPos + el.clientLeft);
-                    yPosition += (el.offsetTop - yScrollPos + el.clientTop);
-                } else {
-                    xPosition += (el.offsetLeft -  el.scrollLeft + el.clientLeft);
-                    yPosition += (el.offsetTop - el.scrollTop + el.clientTop);                    
-                }
-
-                el = el.offsetParent;
-            }
-            return {
-                x: xPosition,
-                y: yPosition
-            };
-        }
+     
   </script>
  
 </body>
