@@ -24,6 +24,11 @@
     let canvasPos = getPosition(canvas);
     let mouseX = 0;
     let mouseY = 0;
+    let dX = 0;
+    let dY = 0;
+    let sqSize = 100;
+    let xPos = 0;
+    let yPos = 0;
 
     canvas.addEventListener("mousemove", setMousePosition, false);
 
@@ -36,8 +41,17 @@
         let x = 0;
         let y = 0;
         while(el){
-            x += (el.offsetLeft - el.scrollLeft + el.clientLeft);
-            y += (el.offsetTop - el.scrollTop + el.clientTop);
+            if(el.tagName == "BODY"){
+                let xScroll = el.scrollLeft || document.documentElement.scrollLeft;
+                let yScroll = el.scrollTop || document.documentElement.scrollTop;
+
+
+                x += (el.offsetLeft - xScroll + el.clientLeft);
+                y += (el.offsetTop - yScroll + el.clientTop);
+            }else{
+                x += (el.offsetLeft - el.scrollLeft + el.clientLeft);
+                y += (el.offsetTop - el.scrollTop + el.clientTop);                
+            }
             el = el.offsetParent;
         }
         return {
@@ -48,11 +62,15 @@
 
 
     function drawCircle() {
+        dX = mouseX - xPos;
+        dY = mouseY - yPos;
+        xPos += (dX/10);
+        yPos += (dY/10);
+        
         context.clearRect(0,0,canvas.width, canvas.height);
         context.beginPath();
-        context.arc(mouseX, mouseY, 50, 0, 2 * Math.PI, true);
         context.fillStyle = "#FF6A6A";
-        context.fill();
+        context.fillRect(xPos - sqSize/2, yPos - sqSize/2, sqSize, sqSize);
         requestAnimationFrame(drawCircle);
     }
     drawCircle();
