@@ -2,54 +2,60 @@
 <html>
  
 <head>
-  <title>Animation Canvas Example</title>
+  <title>Canvas Follow Mouse</title>
   <style>
     canvas {
       border: #333 10px solid;
+    }
+ 
+    body {
+      padding: 50px;
     }
   </style>
 </head>
  
 <body>
-  <div id="container">
-      <canvas id="myCanvas" width="500px" height="500px"></canvas>
-  </div>
+  <canvas id="myCanvas" width="550px" height="350px"></canvas>
  
   <script>
-        let canvas = document.getElementById("myCanvas");
-        let context = canvas.getContext("2d");
-
-        let myImage = new Image();
-        myImage.src = "https://www.kirupa.com/stuff/sprites_blue.png";
-        myImage.addEventListener("load", loadImage, false);
-
-        function loadImage(e) {
-            animate();
-        }
-
-        let shift = 0;
-        let frameWidth = 300;
-        let frameHeight = 300;
-        let totalFrames = 24;
-        let currentFrame = 0;
-
-        function animate() {
-            context.clearRect(120, 25, 300, 300);
-
-            context.drawImage(myImage, shift, 0, frameWidth, frameHeight, 120, 25, frameWidth, frameHeight);
-
-            shift += frameWidth + 1;
-
-            if (currentFrame == totalFrames) {
-                shift = 0;
-                currentFrame = 0;
-            }
-
-            currentFrame++;
-
-            requestAnimationFrame(animate);
-        }
+    var canvas = document.querySelector("#myCanvas");
+    var context = canvas.getContext("2d");
      
+    let canvasPos = getPosition(canvas);
+    let mouseX = 0;
+    let mouseY = 0;
+
+    canvas.addEventListener("mousemove", setMousePosition, false);
+
+    function setMousePosition(e) {
+        mouseX = e.clientX - canvasPos.x;
+        mouseY = e.clientY - canvasPos.y;
+    }
+
+    function getPosition(el) {
+        let x = 0;
+        let y = 0;
+        while(el){
+            x += (el.offsetLeft - el.scrollLeft + el.clientLeft);
+            y += (el.offsetTop - el.scrollTop + el.clientTop);
+            el = el.offsetParent;
+        }
+        return {
+            x,
+            y
+        };
+    }
+
+
+    function drawCircle() {
+        context.clearRect(0,0,canvas.width, canvas.height);
+        context.beginPath();
+        context.arc(mouseX, mouseY, 50, 0, 2 * Math.PI, true);
+        context.fillStyle = "#FF6A6A";
+        context.fill();
+        requestAnimationFrame(drawCircle);
+    }
+    drawCircle();
   </script>
  
 </body>
