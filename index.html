@@ -2,80 +2,73 @@
 <html>
  
 <head>
-  <title>Canvas Follow Mouse</title>
+  <title>Simple Example</title>
   <style>
     canvas {
       border: #333 10px solid;
-    }
- 
-    body {
-      padding: 50px;
     }
   </style>
 </head>
  
 <body>
   <canvas id="myCanvas" width="550px" height="350px"></canvas>
- 
-  <script>
+</body>
+ <script>
     var canvas = document.querySelector("#myCanvas");
     var context = canvas.getContext("2d");
-     
-    let canvasPos = getPosition(canvas);
-    let mouseX = 0;
-    let mouseY = 0;
-    let dX = 0;
-    let dY = 0;
-    let sqSize = 100;
-    let xPos = 0;
-    let yPos = 0;
+    let deltaX = 0;
+    let deltaY = 0;
+    let keys = [];
 
-    canvas.addEventListener("mousemove", setMousePosition, false);
-
-    function setMousePosition(e) {
-        mouseX = e.clientX - canvasPos.x;
-        mouseY = e.clientY - canvasPos.y;
-    }
-
-    function getPosition(el) {
-        let x = 0;
-        let y = 0;
-        while(el){
-            if(el.tagName == "BODY"){
-                let xScroll = el.scrollLeft || document.documentElement.scrollLeft;
-                let yScroll = el.scrollTop || document.documentElement.scrollTop;
-
-
-                x += (el.offsetLeft - xScroll + el.clientLeft);
-                y += (el.offsetTop - yScroll + el.clientTop);
-            }else{
-                x += (el.offsetLeft - el.scrollLeft + el.clientLeft);
-                y += (el.offsetTop - el.scrollTop + el.clientTop);                
-            }
-            el = el.offsetParent;
-        }
-        return {
-            x,
-            y
-        };
-    }
-
-
-    function drawCircle() {
-        dX = mouseX - xPos;
-        dY = mouseY - yPos;
-        xPos += (dX/10);
-        yPos += (dY/10);
-        
+    function drawTriangle(x, y) {
         context.clearRect(0,0,canvas.width, canvas.height);
+  // the triangle
         context.beginPath();
-        context.fillStyle = "#FF6A6A";
-        context.fillRect(xPos - sqSize/2, yPos - sqSize/2, sqSize, sqSize);
-        requestAnimationFrame(drawCircle);
+        context.moveTo(200 + deltaX, 100 + deltaY);
+        context.lineTo(170 + deltaX, 150 + deltaY);
+        context.lineTo(230 + deltaX, 150 + deltaY);
+        context.closePath();
+ 
+  // the outline
+        context.lineWidth = 10;
+        context.strokeStyle = "rgba(102, 102, 102, 1)";
+        context.stroke();
+ 
+  // the fill color
+        context.fillStyle = "rgba(255, 204, 0, 1)";
+        context.fill();
+    };
+
+
+    window.addEventListener("keydown", keyPressed, false);
+    window.addEventListener("keyup", keyReleased, false);
+
+    function keyPressed(e) {
+        keys[e.keyCode] = true;
+
+        if(keys[38]){
+            deltaY -= 2;
+        }
+
+        if(keys[40]){
+            deltaY += 2;
+        }
+
+        if(keys[37]){
+            deltaX -= 2;
+        }
+
+        if(keys[39]){
+            deltaX += 2;
+        }
+        
+        e.preventDefault();
+        drawTriangle(deltaX, deltaY);
     }
-    drawCircle();
-  </script>
- 
-</body>
- 
+
+    function keyReleased(e) {
+        keys[e.keyCode] = false;
+    }
+
+ </script>
 </html>
