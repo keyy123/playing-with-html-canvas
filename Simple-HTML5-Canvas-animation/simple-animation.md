@@ -147,6 +147,15 @@ Before we get to the summary here is a relevant math refresher on the unit circl
 
 [![Watch the video](https://img.youtube.com/vi/_gypISIPOmU/default.jpg)](https://youtu.be/_gypISIPOmU)
 
+[![Watch the video](https://img.youtube.com/vi/_gypISIPOmU/default.jpg)](https://www.youtube.com/embed/_gypISIPOmU)
+
+[<img src="https://img.youtube.com/vi/_gypISIPOmU/default.jpg" width="600" height="300"
+/>](https://www.youtube.com/embed/_gypISIPOmU)
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=_gypISIPOmU" target="_blank">
+ <img src="http://img.youtube.com/vi/_gypISIPOmU/default.jpg" alt="Watch the video" width="240" height="180" border="10" />
+</a>
+
 - `Math.cos` API returns something between -1 and 1 regardless of the value-based in
 - We use `Math.abs` since a negative value does nothing when trying to draw a circle so the value will be positive
 - The means the `radius` will at min be 25 when the angle's cosine is set to 0 and at 1 be 175 (max)
