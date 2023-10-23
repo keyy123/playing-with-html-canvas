@@ -148,6 +148,8 @@ Before we get to the summary here is a relevant math refresher on the unit circl
 [<img src="https://img.youtube.com/vi/_gypISIPOmU/default.jpg" width="600" height="300"
 />](https://www.youtube.com/embed/_gypISIPOmU)
 
+[<img src="https://img.youtube.com/vi/QVdQBMDWprg/default.jpg" width="600" height="300"
+/>](https://www.youtube.com/embed/QVdQBMDWprg)
 
 - `Math.cos` API returns something between -1 and 1 regardless of the value-based in
 - We use `Math.abs` since a negative value does nothing when trying to draw a circle so the value will be positive
