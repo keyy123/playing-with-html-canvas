@@ -145,7 +145,7 @@ let radius = 25 + 150 * Math.abs(Math.cos(angle))
 Before we get to the summary here is a relevant math refresher on the unit circle that I pulled from google:
 ![Unit Circle - Cosine and Sine](https://www.mathsisfun.com/geometry/images/circle-unit-304560.svg)
 
-![Calculus Fun 1](#,https://www.youtube.com/watch?v=_gypISIPOmU)
+[![Watch the video](https://img.youtube.com/vi/_gypISIPOmU/default.jpg)](https://youtu.be/_gypISIPOmU)
 
 - `Math.cos` API returns something between -1 and 1 regardless of the value-based in
 - We use `Math.abs` since a negative value does nothing when trying to draw a circle so the value will be positive
