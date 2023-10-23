@@ -151,6 +151,12 @@ Before we get to the summary here is a relevant math refresher on the unit circl
 [<img src="https://img.youtube.com/vi/QVdQBMDWprg/default.jpg" width="600" height="300"
 />](https://www.youtube.com/embed/QVdQBMDWprg)
 
+Here is a tidbit of math today to keep Prof. Kal Culus at bay, The cosine in the unit circle focus on the X-coordinate of 
+all points in it. The value of X in a unit circle ranges from 1 to -1. Another thing to know is a full circle is 2 PI or 2 Radians which is 360
+degrees. 1 Radian is a half circle. 
+
+Back to the code:
+
 - `Math.cos` API returns something between -1 and 1 regardless of the value-based in
 - We use `Math.abs` since a negative value does nothing when trying to draw a circle so the value will be positive
 - The means the `radius` will at min be 25 when the angle's cosine is set to 0 and at 1 be 175 (max)
