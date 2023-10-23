@@ -58,11 +58,10 @@ If time runs out and you don’t have a solution look [here]() to compare with y
 #### What is `fillStyle` API?
 - The [`fillStyle`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillStyle) API is to set the color for the background of the object it is called on (this does not apply the color though).
 - It is used on the `context` object (like all the methods shown here)
-- `mainContext.fillStyle = "#EEEEEE (light gray)`
 
 Goal: use `fillStyle` to set up future operations
 - make a canvas, see [exercise 1](#exercise-1)
-- use `fillStyle` to set the canvas to be painted with a specific color
+- use `fillStyle` to set the canvas to be painted with a specific color. If lost, see [fillStyle API](#what-is-fillstyle-api)
 - NOTE: Don't worry if you can't see any color, `fillStyle` does not color stuff by itself so it's fine. 
 
 If time runs out and you don’t have a solution look [here]() to compare with your current code.   
