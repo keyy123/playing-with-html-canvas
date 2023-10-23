@@ -66,7 +66,9 @@ If time runs out and you don’t have a solution look [here]() to compare with y
 - [`beginPath`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/beginPath) API tells canvas you are ready to draw a new shape 
 - [`closePath`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/closePath) API tells canvas you are done drawing a shape and will connect the last points of a shape for you
 
-- The `arc` API draws a circle with 6 arguments: center x coord, center y coord, radius, start angle, and end angle, is it going to be drawn counterclockwise
+
+#### What does `arc` API do?
+- The [`arc`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/arc) API draws a circle with 6 arguments: center x coord, center y coord, radius, start angle, and end angle, is it going to be drawn counterclockwise
 
 - We use the `fillStyle` API to set the color we want for our circle
 
