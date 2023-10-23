@@ -78,13 +78,13 @@ If time runs out and you don’t have a solution look [here]() to compare with y
 ### How to animate the circle?
 - We want to change the radius of the circle from big to small
 - This means we need to animate with JavaScript since we are not using DOM for this AKA `requestAnimationFrame` to change our hardcoded radius value for animation
-- We make a variable to save requestAnimationFrame API and make sure it is cross-browser compatible like below:
+- <s>We make a variable to save requestAnimationFrame API and make sure it is cross-browser compatible like below:
 `
 let requestAnimationFrame = window.requestAnimationFrame || 
                             window.mozRequestAnimationFrame ||
                             window.webkitRequestAnimationFrame || 
                             window.msRequestAnimationFrame;
-`
+`</s> `requestAnimationFrame has reached mainstream levels of browser compatibility so no need for vendor prefix here
 - Within the `drawCircle` function body, call the `requestAnimationFrame` variable with the drawCircle function. 
 `
 requestAnimationFrame(drawCircle);
