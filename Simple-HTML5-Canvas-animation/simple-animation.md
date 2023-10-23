@@ -27,7 +27,6 @@ Complete the exercise in [above]()
 If time runs out and you don’t have a solution look [here]() to compare with your current code.   
 
 
-
 ### How to  draw a circle to canvas?
 - select your `canvas` using JS  
 - set the `canvas` rendering context to `2d`
@@ -116,31 +115,39 @@ function drawCirle() {
 drawCirle();
 ```
 
+Good news, using most of the APIs above we have essentially understood how most of the `drawCircle` function works, however, we still need to understand how the draw circle function is being animated and the
+logic behind it.
+
 
 ### How to animate the circle?
 - We want to change the radius of the circle from big to small
-- This means we need to animate with JavaScript since we are not using DOM for this AKA `requestAnimationFrame` to change our hardcoded radius value for animation
+- This means we need to animate with JavaScript since we are not using DOM (`css transition`, `keyframes`), We use `requestAnimationFrame` API
 - <s>We make a variable to save requestAnimationFrame API and make sure it is cross-browser compatible like below:
 `
 let requestAnimationFrame = window.requestAnimationFrame || 
                             window.mozRequestAnimationFrame ||
                             window.webkitRequestAnimationFrame || 
                             window.msRequestAnimationFrame;
-`</s>. `requestAnimationFrame` has reached mainstream levels of browser compatibility so no need for vendor prefix here
+`</s>. `requestAnimationFrame` has reached mainstream levels of browser compatibility so no need for a vendor prefix here
 - Within the `drawCircle` function body, call the `requestAnimationFrame` variable with the drawCircle function. 
 `
-requestAnimationFrame(drawCircle);
+requestAnimationFrame(drawCircle); 
 `
 - The above line tells the browser to call the `drawCircle` function every time the browser wants to redraw which will be about 60x/sec. 
-- Our next goal is to change the radius in our `drawCircle` function for our animation since each time it's called is the same as making a new frame. 
+- Now that our drawCircle fxn is being called 60x/s, Our next goal is to change the radius in our `drawCircle` function for our animation each time it's called. This process is how we make new frames.
 
 ### How to use math to make the animation work?
-- We make a global variable to hold value for angles
+- We make a global variable `angle` to hold value for angles
 - We readjust the radius variable to depend on the `angle`
 ```
 let radius = 25 + 150 * Math.abs(Math.cos(angle))
 ```
-- `Math.cos` API returns something between -1 and 1 regardless of the value-based in 
+Before we get to the summary here is a relevant math refresher on the unit circle that I pulled from google:
+![Unit Circle - Cosine and Sine](https://www.mathsisfun.com/geometry/images/circle-unit-304560.svg)
+
+![Calculus Fun 1](#,https://www.youtube.com/watch?v=_gypISIPOmU)
+
+- `Math.cos` API returns something between -1 and 1 regardless of the value-based in
 - We use `Math.abs` since a negative value does nothing when trying to draw a circle so the value will be positive
 - The means the `radius` will at min be 25 when the angle's cosine is set to 0 and at 1 be 175 (max)
 - `angle += Math.PI / 64`
