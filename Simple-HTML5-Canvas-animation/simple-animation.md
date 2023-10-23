@@ -41,8 +41,8 @@ If time runs out and you don’t have a solution look [here]() to compare with y
 
 #### What is `clearRect` API?
 - [`clearRect`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/clearRect) API takes in 4 arguments: x-coordinate, y-coordinate for rectangular area to clear, width, and height. 
-- The first line of the `drawCircle` is set to (0,0) aka the top leftmost spot of the canvas and set to the width and height of the canvas to clear the entire canvas of all pixels. 
--`mainContext.clearRect(0,0,canvasWidth, canvasHeight)`
+- The first line of the `drawCircle` is set to (0,0) aka the top leftmost spot of the canvas and set to the width and height of the canvas to clear the entire canvas of all pixels.
+- `mainContext.clearRect(0,0,canvasWidth, canvasHeight)`
 
 #### Exercise(set a timer for 2 minutes): 
 Goal: Clear Canvas in Draw Function
