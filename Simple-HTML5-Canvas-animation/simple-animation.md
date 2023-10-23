@@ -16,7 +16,7 @@ Goal: Learn how to animate what you draw in `canvas` element
 
 Goal: To make a scaling circle animation we see in the intro to practice how to draw and clear steps turn into code 
 
-### Exercise(set a timer for 5 minutes): 
+#### Exercise 1 (set a timer for 5 minutes): 
  Goal: Add a canvas to your project
 - Create a `canvas` element 
 - add `width` and `height` of any value > `0`
@@ -37,20 +37,21 @@ If time runs out and you don’t have a solution look [here]() to compare with y
 #### What is the `getContext` API?
 [`getContext`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext) = method on `canvas` object that returns an object that lets us draw on the canvas
 
-### How do we read the drawCircle function?
+### Glossary to read the `DrawCircle` function 
 
 Before we make a function to draw a circle, we'll need to know about the APIs that we'll use to make that possible so be sure to quickly skim through the links for the API to see how they work on MDN. This section will work like a glossary so you can study the individual APIs and play with them or focus on the exercises instead to save time. 
 
-#### What is `clearRect` API?
+#### What is the `clearRect` API?
 - [`clearRect`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/clearRect) API takes in 4 arguments: x-coordinate, y-coordinate for rectangular area to clear, width, and height. 
 - The first line of the `drawCircle` is set to (0,0) aka the top leftmost spot of the canvas and set to the width and height of the canvas to clear the entire canvas of all pixels.
 - `mainContext.clearRect(0,0,canvasWidth, canvasHeight)`
 
-#### Exercise(set a timer for 2 minutes): 
+#### Exercise 1: 
 Goal: Clear Canvas in Draw Function
 - use `clearRect` to clear your `canvas` 
 - store canvas’ `width` and `height` as variables
-
+- set timer for 2 minutes
+  
 If time runs out and you don’t have a solution look [here]() to compare with your current code.   
 
 
@@ -58,6 +59,14 @@ If time runs out and you don’t have a solution look [here]() to compare with y
 - The [`fillStyle`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillStyle) API is to set the color for the background of the object it is called on (this does not apply the color though).
 - It is used on the `context` object (like all the methods shown here)
 - `mainContext.fillStyle = "#EEEEEE (light gray)`
+
+Goal: use `fillStyle` to set up future operations
+- make a canvas, see [exercise 1](#exercise-1)
+- use `fillStyle` to set the canvas to be painted with a specific color
+- NOTE: Don't worry if you can't see any color, `fillStyle` does not color stuff by itself so it's fine. 
+
+If time runs out and you don’t have a solution look [here]() to compare with your current code.   
+
 
 #### What is `fillRect` API?
 -  The [`fillRect`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillRect) API is to apply the value set from `fillStyle` in a rectangular area. It takes 4 arguments: x-coordinates, y-coordinates, width, and height. We apply the style to the top-leftmost spot and give it the canvas width and height to style the entire canvas' bg. 
