@@ -39,6 +39,8 @@ If time runs out and you don’t have a solution look [here]() to compare with y
 
 ### How do we read the drawCircle function?
 
+Before we make a function to draw a circle, we'll need to know about the APIs that we'll use to make that possible so be sure to quickly skim through the links for the API to see how they work on MDN. This section will work like a glossary so you can study the individual APIs and play with them or focus on the exercises instead to save time. 
+
 #### What is `clearRect` API?
 - [`clearRect`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/clearRect) API takes in 4 arguments: x-coordinate, y-coordinate for rectangular area to clear, width, and height. 
 - The first line of the `drawCircle` is set to (0,0) aka the top leftmost spot of the canvas and set to the width and height of the canvas to clear the entire canvas of all pixels.
@@ -53,15 +55,15 @@ If time runs out and you don’t have a solution look [here]() to compare with y
 
 
 #### What is `fillStyle` API?
-- The [`fillStyle`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillStyle) API is to set the color for the background of the object it is called on (this does not apply the color though). We use it on `mainContext` object to style canvas bg
+- The [`fillStyle`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillStyle) API is to set the color for the background of the object it is called on (this does not apply the color though).
+- It is used on the `context` object (like all the methods shown here)
 - `mainContext.fillStyle = "#EEEEEE (light gray)`
 
 #### What is `fillRect` API?
--  The [`fillRect`]() API is to apply the value set from `fillStyle` in a rectangular area. It takes 4 arguments: x-coordinates, y-coordinates, width, and height. We apply the style to the topleft most spot and give it the canvas' width and height to style the entire canvas' bg. 
+-  The [`fillRect`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillRect) API is to apply the value set from `fillStyle` in a rectangular area. It takes 4 arguments: x-coordinates, y-coordinates, width, and height. We apply the style to the top-leftmost spot and give it the canvas width and height to style the entire canvas' bg. 
 -  `mainContext.fillRect(0, 0, canvasWidth, canvasHeight)`
 
-
-- The next lines draw circles: 
+ 
  #### What do the path APIs do?
 - [`beginPath`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/beginPath) API tells canvas you are ready to draw a new shape 
 - [`closePath`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/closePath) API tells canvas you are done drawing a shape and will connect the last points of a shape for you
@@ -70,9 +72,8 @@ If time runs out and you don’t have a solution look [here]() to compare with y
 #### What does `arc` API do?
 - The [`arc`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/arc) API draws a circle with 6 arguments: center x coord, center y coord, radius, start angle, and end angle, is it going to be drawn counterclockwise
 
-- We use the `fillStyle` API to set the color we want for our circle
-
-- The `fill` API is used to apply the `fillStyle` value on our circle to fill the background
+#### What does `fill` API do?
+- The [`fill`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fill) API is used to apply the `fillStyle` value on our circle to fill the background
 
 
 ### How to animate the circle?
@@ -84,7 +85,7 @@ let requestAnimationFrame = window.requestAnimationFrame ||
                             window.mozRequestAnimationFrame ||
                             window.webkitRequestAnimationFrame || 
                             window.msRequestAnimationFrame;
-`</s> `requestAnimationFrame has reached mainstream levels of browser compatibility so no need for vendor prefix here
+`</s>. `requestAnimationFrame` has reached mainstream levels of browser compatibility so no need for vendor prefix here
 - Within the `drawCircle` function body, call the `requestAnimationFrame` variable with the drawCircle function. 
 `
 requestAnimationFrame(drawCircle);
