@@ -157,11 +157,12 @@ degrees. 1 Radian is a half circle.
 
 Back to the code:
 
-- `Math.cos` API returns something between -1 and 1 regardless of the value-based in
+- `Math.cos` API returns something between -1 and 1 based on the value in degrees passed in 
 - We use `Math.abs` since a negative value does nothing when trying to draw a circle so the value will be positive
 - The means the `radius` will at min be 25 when the angle's cosine is set to 0 and at 1 be 175 (max)
 - `angle += Math.PI / 64`
-- This ensures that the angle is slowly increasing by a fixed amt (`.0491`) 
+- This ensures that the angle is slowly increasing by a fixed amt (`.0491`) until it reaches the other half of circle and repeat.
+- This means the circle starts big then becomes small then end up becoming big before the animation loops for the next seconds again and again until we mercy-close the browser tab.
 
 ### Further Resources
 -[Animating in Code Using JavaScript](https://www.kirupa.com/html5/animating_in_code_using_javascript.htm)
