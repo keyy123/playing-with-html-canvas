@@ -46,26 +46,9 @@ Before we make a function to draw a circle, we'll need to know about the APIs th
 - The first line of the `drawCircle` is set to (0,0) aka the top leftmost spot of the canvas and set to the width and height of the canvas to clear the entire canvas of all pixels.
 - `mainContext.clearRect(0,0,canvasWidth, canvasHeight)`
 
-#### Exercise 1: 
-Goal: Clear Canvas in Draw Function
-- use `clearRect` to clear your `canvas` 
-- store canvas’ `width` and `height` as variables
-- set timer for 2 minutes
-  
-If time runs out and you don’t have a solution look [here]() to compare with your current code.   
-
-
 #### What is `fillStyle` API?
 - The [`fillStyle`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillStyle) API is to set the color for the background of the object it is called on (this does not apply the color though).
 - It is used on the `context` object (like all the methods shown here)
-
-Goal: use `fillStyle` to set up future operations
-- make a canvas, see [exercise 1](#exercise-1)
-- use `fillStyle` to set the canvas to be painted with a specific color. If lost, see [fillStyle API](#what-is-fillstyle-api)
-- NOTE: Don't worry if you can't see any color, `fillStyle` does not color stuff by itself so it's fine. 
-
-If time runs out and you don’t have a solution look [here]() to compare with your current code.   
-
 
 #### What is `fillRect` API?
 -  The [`fillRect`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillRect) API is to apply the value set from `fillStyle` in a rectangular area. It takes 4 arguments: x-coordinates, y-coordinates, width, and height. We apply the style to the top-leftmost spot and give it the canvas width and height to style the entire canvas' bg. 
@@ -82,6 +65,56 @@ If time runs out and you don’t have a solution look [here]() to compare with y
 
 #### What does `fill` API do?
 - The [`fill`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fill) API is used to apply the `fillStyle` value on our circle to fill the background
+
+
+### Let's read `DrawCircle` function
+
+```js
+window.addEventListener("resize", resizeCanvas, false);
+
+function resizeCanvas(e) {
+    myCanvas.width = (document.documentElement.clientWidth * 0.98);
+    myCanvas.height = (document.documentElement.clientHeight * 0.98);
+}
+
+/* Ignore the code above this section, we'll focus on it later. If you have free time, I would encourage you to study it though. */
+
+let myCanvas = document.getElementById("myCanvas");
+let mainContext = myCanvas.getContext("2d");
+myCanvas.width = 450;
+myCanvas.height = 450;
+let angle = 0;
+
+function drawCirle() {
+    // clear our canvas
+    mainContext.clearRect(0, 0, myCanvas.width, myCanvas.height); 
+
+    // color in the canvas 
+    mainContext.fillStyle = "#EEEEEE";
+    mainContext.fillRect(0, 0, myCanvas.width, myCanvas.height);
+
+    // start to draw the circle
+    mainContext.beginPath();
+
+    let radius = 25 + (150 * Math.abs(Math.cos(angle)));
+
+    // draw a full circle 
+    mainContext.arc(225, 255, radius, 0, Math.PI * 2, false);
+
+    // stop drawing the circle on the canvas and connect last point to start
+    mainContext.closePath();
+
+    // color in circle 
+    mainContext.fillStyle = "#006699";
+    mainContext.fill();
+
+    angle += Math.PI / 64;
+
+    requestAnimationFrame(drawCirle)
+}
+
+drawCirle();
+```
 
 
 ### How to animate the circle?
